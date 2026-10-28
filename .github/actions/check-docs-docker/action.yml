@@ -1,0 +1,12 @@
+name: Check docs (Docker)
+description: Comprueba que existen los archivos de documentación
+inputs:
+  files:
+    description: Archivos separados por comas
+    required: false
+    default: "README.md,LICENSE,CONTRIBUTING.md"
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.files }}

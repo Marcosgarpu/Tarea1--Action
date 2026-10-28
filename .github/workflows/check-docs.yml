@@ -1,0 +1,26 @@
+name: Check docs
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  composite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/check-docs-composite
+
+      
+  javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/check-docs-js
+  
+  
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/check-docs-docker

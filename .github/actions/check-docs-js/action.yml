@@ -1,0 +1,10 @@
+name: Check docs (JavaScript)
+description: Comprueba que existen los archivos de documentación
+inputs:
+  files:
+    description: Archivos separados por comas
+    required: false
+    default: "README.md,LICENSE,CONTRIBUTING.md"
+runs:
+  using: node20
+  main: index.js

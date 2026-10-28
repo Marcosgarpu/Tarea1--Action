@@ -1,0 +1,25 @@
+name: Check docs (Composite)
+description: Comprueba que existen los archivos de documentación
+inputs:
+  files:
+    description: Archivos separados por comas
+    required: false
+    default: "README.md,LICENSE,CONTRIBUTING.md"
+runs:
+  using: composite
+  steps:
+    - name: Comprobar archivos
+      shell: bash
+      run: |
+        missing=0
+        IFS=',' read -ra FILES <<< "${{ inputs.files }}"
+        for f in "${FILES[@]}"; do
+          f=$(echo "$f" | xargs)
+          if [ -f "$f" ]; then
+            echo " $f existe"
+          else
+            echo "::error:: $f NO existe"
+            missing=1
+          fi
+        done
+        exit $missing
